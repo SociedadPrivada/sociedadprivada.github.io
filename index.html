@@ -109,13 +109,16 @@
     header.hero { padding: 6mm 0 2mm; }
     header.hero img { width: 62mm; }
     header.hero .tag { margin-top: 3mm; }
-    main.wrap { columns: 2; column-gap: 11mm; }
+    .sheet { columns: 2; column-gap: 11mm; }
+    .sheet + .sheet { break-before: page; }
+    .sheet + .sheet section.cat:first-child { padding-top: 0; }
+    #vinos .item { padding: 0.75mm 0; }
+    .sheet:last-child { padding-bottom: 6mm; }
     section.cat { padding-top: 6mm; break-inside: auto; }
-    section.cat#vinos, section.cat#tragos { break-before: column; }
     .flame { display: none; }
     h2 { font-size: 16px; margin-bottom: 1mm; break-after: avoid; }
     h3 { font-size: 9px; margin: 3.5mm 0 1mm; break-after: avoid; }
-    .item { padding: 1.3mm 0; break-inside: avoid; border-bottom-color: rgba(168,132,52,.18); }
+    .item { padding: 1mm 0; break-inside: avoid; border-bottom-color: rgba(168,132,52,.18); }
     .name { font-size: 13.5px; }
     .price { font-size: 10.5px; }
     .dots { transform: translateY(-3px); }
@@ -370,7 +373,9 @@ const nav = document.getElementById("nav");
 const menu = document.getElementById("menu");
 
 nav.innerHTML = MENU.map(c => `<a href="#${c.id}" data-id="${c.id}">${c.title}</a>`).join("");
-menu.innerHTML = MENU.map(c => `
+// Al imprimir, cada hoja arranca en página nueva
+const SHEETS = [["entradas", "parrilla", "principales", "postres"], ["vinos"], ["tragos", "cervezas", "sin-alcohol"]];
+const renderCat = c => `
   <section class="cat" id="${c.id}">
     <span class="flame">· · ·</span>
     <h2>${c.title}</h2>
@@ -386,7 +391,8 @@ menu.innerHTML = MENU.map(c => `
           </div>`;
         }).join("")}
       </div>`).join("")}
-  </section>`).join("");
+  </section>`;
+menu.innerHTML = SHEETS.map(ids => `<div class="sheet">${ids.map(id => renderCat(MENU.find(c => c.id === id))).join("")}</div>`).join("");
 
 // Resaltar la categoría visible en la barra superior
 const links = [...nav.querySelectorAll("a")];
