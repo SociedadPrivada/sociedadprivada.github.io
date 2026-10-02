@@ -150,18 +150,17 @@
 // [nombre, precio, descripción]. Precio 0 = "Sin cargo" o "Consultar" según la sección.
 const MENU = [
   { id: "entradas", title: "Entradas", groups: [{ items: [
-    ["Burrata", 10000, "Con colchón de hojas verdes, jamón crudo y chutney de frutas"],
+    ["Boconcinos", 10000, "Colchón de verdes, jamón crudo y tomates cherry"],
     ["Empanada al horno", 5000],
     ["Empanada frita", 5000],
     ["Molleja", 12000, "Asada, con hummus de zanahoria y ralladura de limón"],
     ["Provoleta con tomates confitados", 12000],
-    ["Sorrentinos fritos", 10000, "Pollo al disco y caprese"],
+    ["Sorrentinos fritos", 8000, "Pollo al disco y caprese"],
     ["Tortilla de papas española", 10000, "En base de verdes y alioli"],
-    ["Tabla de fiambres", 0],
   ]}]},
   { id: "parrilla", title: "Parrilla", groups: [
     { items: [
-      ["Tabla Sociedad Privada", 70000, "Asado banderita, matambre, bife de chorizo + ensalada de hojas verdes y papas fritas"],
+      ["Tabla Sociedad Privada", 78000, "Asado banderita, matambre, bife de cuadril + ensalada de hojas verdes y papas fritas"],
       ["Ojo de bife con hueso", 43000],
       ["Bife de chorizo", 40000],
       ["Entraña", 40000],
@@ -181,23 +180,26 @@ const MENU = [
   { id: "principales", title: "Principales", groups: [
     { title: "Pastas", items: [
       ["Sorrentinos de salmón", 32000],
-      ["Sorrentinos de hongos de pino", 30000],
+      ["Sorrentinos caprese", 30000],
+      ["Sorrentinos de vacío al malbec", 30000],
     ]},
     { title: "Pescados", items: [
-      ["Trucha a las finas hierbas", 40000],
+      ["Trucha a las finas hierbas", 40000, "Papines andinos, tomates cherry y hongos salteados"],
     ]},
     { title: "Sugerencia del día", items: [
       ["Plato sugerencia", 0, "Preguntá a tu mozo por la propuesta de hoy"],
     ]},
   ]},
   { id: "postres", title: "Postres", groups: [{ items: [
-    ["Plato regional", 15000, "Quesos y dulces"],
-    ["Panqueques", 10000],
-    ["Flan casero", 8000],
-    ["Pavlova", 8000],
-    ["Pera al malbec", 0],
+    ["Plato regional", 12000, "Quesos y dulces"],
+    ["Panqueques", 10000, "Rellenos de dulce de leche, con frutas flambeadas y crema chantilly"],
+    ["Flan casero", 8000, "Con dulce de leche y crema chantilly"],
+    ["Deconstrucción de pavlova", 8000],
   ]}]},
   { id: "vinos", title: "Vinos", groups: [
+    { title: "Por copa", items: [
+      ["Copa de vino tinto", 7000, "Malbec / Cabernet Franc / Cabernet Sauvignon"],
+    ]},
     { title: "Malbec", items: [
       ["Anahia Malbec", 18000],
       ["Fond de Cave Reserva Malbec", 18000],
@@ -205,14 +207,20 @@ const MENU = [
       ["La Mascota Malbec", 21000],
       ["Las Perdices Reserva Malbec", 21000],
       ["Salentein Reserva Malbec", 21000],
+      ["Trumpeter Reserva Malbec", 22000],
+      ["Terrazas de los Andes Reserva Malbec", 24000],
       ["Salentein Numina Malbec", 28000],
-      ["Terrazas de los Andes Reserva Malbec", 28000],
       ["Trapiche Medalla Malbec", 28000],
+      ["DV Catena Malbec", 35000],
       ["Gran Mascota Malbec", 35000],
       ["Luigi Bosca Malbec", 35000],
       ["Esteco Old Vines Malbec", 36000],
+      ["Rutini Malbec", 44000],
+      ["Angélica Zapata Malbec Alta", 45000],
       ["Luigi Bosca De Sangre DOC Malbec Luján de Cuyo", 46000],
       ["Salentein Primus Malbec", 94000],
+      ["Malbec Argentino", 130000],
+      ["Las Perdices Don Juan Malbec Magnum 3 L", 145000],
     ]},
     { title: "Cabernet Franc", items: [
       ["Anahia Cabernet Franc", 18000],
@@ -220,18 +228,22 @@ const MENU = [
       ["Salentein Reserva Cabernet Franc", 21000],
       ["Las Perdices Ala Colorada Cabernet Franc", 28000],
       ["Salentein Numina Cabernet Franc", 35000],
+      ["Rutini Cabernet Franc", 42000],
       ["Luigi Bosca De Sangre Cabernet Franc", 50000],
     ]},
     { title: "Cabernet Sauvignon", items: [
+      ["DV Catena Cabernet Sauvignon", 35000],
+      ["Angélica Zapata Cabernet Sauvignon", 43000],
       ["Salentein Primus Cabernet Sauvignon", 97000],
     ]},
     { title: "Pinot Noir", items: [
       ["Las Perdices Reserva Pinot Noir", 21000],
-      ["Terrazas de los Andes Reserva Pinot Noir", 28000],
+      ["Terrazas de los Andes Reserva Pinot Noir", 24000],
       ["Costa & Pampa Pinot Noir", 35000],
       ["Luigi Bosca Pinot Noir", 35000],
     ]},
     { title: "Blend", items: [
+      ["DV Catena Cabernet - Malbec", 24000],
       ["Trapiche Medalla Blend", 28000],
       ["Anahia Gran Assemblage Blend", 40000],
       ["Las Perdices Reserva Don Juan", 42000],
@@ -247,12 +259,14 @@ const MENU = [
       ["La Mascota Rosé", 21000],
       ["Salentein Reserva Rosé", 21000],
       ["Anahia Gran Rosé", 28000],
+      ["Las Perdices Clásico Rosado", 28000],
       ["Las Perdices Exploración Malbec Rosé", 28000],
     ]},
     { title: "Dulces", items: [
       ["Finca La Linda Sweet Viognier", 21000],
     ]},
     { title: "Espumantes", items: [
+      ["Mumm en lata", 8000],
       ["Las Perdices Brut Rosé", 18000],
       ["Mumm Cuvée Extra Brut", 21000],
       ["La Linda Extra Brut", 23000],
@@ -293,18 +307,27 @@ const MENU = [
       ["Penicillin", 11000, "Whisky, jugo de limón y almíbar"],
       ["Vermut", 11000],
       ["Aperol Spritz", 10000],
+      ["Fernet con coca", 10000],
       ["Smirnoff", 10000],
       ["Campari orange", 9000],
-      ["Fernet con coca", 9000],
       ["Gancia batido", 9000],
+    ]},
+    { title: "Whisky", items: [
+      ["The Glenlivet 12 años", 18000],
+      ["Chivas Regal 12 años", 15000],
+      ["Johnnie Walker Black Label", 12000],
+      ["Jack Daniel's", 10000],
+      ["Jameson", 10000],
     ]},
     { title: "Sugerencia", items: [
       ["Trago sugerido", 11000, "Preguntá a tu mozo por el trago de hoy"],
     ]},
   ]},
   { id: "cervezas", title: "Cervezas", groups: [{ items: [
-    ["Corona", 6000],
-    ["Corona 0.0", 6000, "Sin alcohol"],
+    ["Corona", 8000],
+    ["Stella Artois", 8000],
+    ["Corona 0.0", 8000, "Sin alcohol"],
+    ["Stella Artois 0.0", 8000, "Sin alcohol"],
   ]}]},
   { id: "sin-alcohol", title: "Sin alcohol", groups: [
     { title: "Aguas", items: [
@@ -321,14 +344,20 @@ const MENU = [
       ["Pomelo 0%", 6000],
     ]},
     { title: "Gaseosas", items: [
-      ["Coca-Cola", 5000],
-      ["Coca-Cola Zero", 5000],
-      ["Sprite", 5000],
-      ["Speed", 3000],
+      ["Coca-Cola", 6000],
+      ["Coca-Cola Zero", 6000],
+      ["Fanta", 6000],
+      ["Fanta Zero", 6000],
+      ["Sprite", 6000],
+      ["Speed", 5000],
     ]},
     { title: "Limonada", items: [
       ["Limonada en vaso", 9500],
       ["Jarra de limonada", 10000],
+    ]},
+    { title: "Cafetería", items: [
+      ["Café / Cortado", 4000],
+      ["Infusión", 5000],
     ]},
   ]},
 ];
